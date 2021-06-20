@@ -1,0 +1,10 @@
+
+- Font Style and size menu 
+- WYSYWYG Menu
+- Every Menu is hidden (at the end).
+- Music menu
+- Word Count 
+- Download files
+- Typing sound
+- Night Mode
+- User settings 2nd phase
