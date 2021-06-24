@@ -22,8 +22,9 @@ const StyledForm = styled.form`
     max-width: 110rem;
 `;
 
-export default function TextArea() {
+export default function TextArea({ options }) {
     const [text, setText] = useState("");
+
     return (
         <StyledForm>
             <StyledTextArea
@@ -31,6 +32,7 @@ export default function TextArea() {
                 onChange={(e) => {
                     setText(e.target.value);
                 }}
+                style={{ fontSize: `${options.fontSize}px` }}
             />
         </StyledForm>
     );

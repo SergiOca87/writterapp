@@ -51,7 +51,7 @@ const StyledDrawerContent = styled.div`
     padding: 4rem 2rem;
 `;
 
-export default function MenuToggle({ setOptions }) {
+export default function MenuToggle({ options, setOptions }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -65,7 +65,7 @@ export default function MenuToggle({ setOptions }) {
             </StyledMenuToggle>
             <StyledDrawer className={isOpen ? "open" : "closed"}>
                 <StyledDrawerContent className="inner-content">
-                    <OptionsForm />
+                    <OptionsForm options={options} setOptions={setOptions} />
                     <BackgroundSwitcher setOptions={setOptions} />
                 </StyledDrawerContent>
             </StyledDrawer>

@@ -31,10 +31,7 @@ const StyledButtonGroup = styled.div`
     }
 `;
 
-export default function OptionsForm() {
-    const [font, setFont] = useState("");
-    const [fontSize, setFontSize] = useState("");
-
+export default function OptionsForm({ options, setOptions }) {
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             Simple tooltip
@@ -54,7 +51,10 @@ export default function OptionsForm() {
                                 <Tooltip id="button-tooltip">Lato</Tooltip>
                             }
                         >
-                            <Button variant="outline-secondary">
+                            <Button
+                                variant="outline-secondary"
+                                className="active"
+                            >
                                 <span className="lato">Aa</span>
                             </Button>
                         </OverlayTrigger>
@@ -74,7 +74,27 @@ export default function OptionsForm() {
 
                 <Form.Group controlId="formBasicRange">
                     <Form.Label>Font Size</Form.Label>
-                    <Form.Control type="range" />
+                    <OverlayTrigger
+                        placement="right"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={
+                            <Tooltip id="button-tooltip">
+                                {`${options.fontSize}px`}
+                            </Tooltip>
+                        }
+                    >
+                        <Form.Control
+                            type="range"
+                            min="12"
+                            max="60"
+                            onChange={(e) =>
+                                setOptions({
+                                    ...options,
+                                    fontSize: e.target.value,
+                                })
+                            }
+                        />
+                    </OverlayTrigger>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicButtons">

@@ -23,7 +23,6 @@ export default function BackgroundSwitcher({ setOptions }) {
     const [backgroundSrc, setBackgroundSrc] = useState(bg1);
 
     const backgroundChange = (src) => {
-        console.log("click", backgroundSrc);
         return setOptions({
             background: src,
         });

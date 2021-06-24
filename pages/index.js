@@ -8,6 +8,8 @@ import Background from "../components/Background";
 import styled from "styled-components";
 import bg1 from "../public/1.jpg";
 
+//TODO: pass down the set Options to the textarea, to use those styles
+
 const StyledMain = styled.main`
     padding: 8rem 2rem;
     max-width: 160rem;
@@ -18,7 +20,12 @@ const StyledMain = styled.main`
 export default function Home() {
     const [options, setOptions] = useState({
         background: bg1,
+        fontFamily: "Lato",
+        fontStyle: "initial",
+        fontWeight: "initial",
+        fontSize: "2.1rem",
     });
+
     return (
         <div>
             <Head>
@@ -33,9 +40,9 @@ export default function Home() {
             </Head>
 
             <StyledMain>
-                <MenuToggle setOptions={setOptions} />
+                <MenuToggle options={options} setOptions={setOptions} />
                 <Background active={options.background} />
-                <TextArea />
+                <TextArea options={options} />
             </StyledMain>
         </div>
     );
