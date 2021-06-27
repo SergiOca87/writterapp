@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import bg1 from "../public/1.jpg";
@@ -6,6 +6,7 @@ import bg2 from "../public/2.jpg";
 import bg3 from "../public/3.jpg";
 import bg4 from "../public/4.jpg";
 import bg5 from "../public/5.jpg";
+import OptionsContext from "../context/OptionsContext";
 
 const backgrounds = [bg1, bg2, bg3, bg4, bg5];
 
@@ -19,14 +20,8 @@ const StyledThumbnailsWrap = styled.div`
     }
 `;
 
-export default function BackgroundSwitcher({ setOptions }) {
-    const [backgroundSrc, setBackgroundSrc] = useState(bg1);
-
-    const backgroundChange = (src) => {
-        return setOptions({
-            background: src,
-        });
-    };
+export default function BackgroundSwitcher() {
+    const { options, setOptions } = useContext(OptionsContext);
 
     return (
         <>
@@ -40,7 +35,12 @@ export default function BackgroundSwitcher({ setOptions }) {
                             width={50}
                             height={50}
                             data-src={background.src}
-                            onClick={(e) => backgroundChange(background.src)}
+                            onClick={(e) => {
+                                setOptions({
+                                    ...options,
+                                    background: background.src,
+                                });
+                            }}
                         />
                     );
                 })}

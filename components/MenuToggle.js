@@ -65,8 +65,8 @@ export default function MenuToggle({ options, setOptions }) {
             </StyledMenuToggle>
             <StyledDrawer className={isOpen ? "open" : "closed"}>
                 <StyledDrawerContent className="inner-content">
-                    <OptionsForm options={options} setOptions={setOptions} />
                     <BackgroundSwitcher setOptions={setOptions} />
+                    <OptionsForm options={options} setOptions={setOptions} />
                 </StyledDrawerContent>
             </StyledDrawer>
         </StyledDrawerWrap>

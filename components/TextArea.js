@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
+import OptionsContext from "../context/OptionsContext";
 
 const StyledTextArea = styled.textarea`
     min-height: 80vh;
@@ -22,8 +23,35 @@ const StyledForm = styled.form`
     max-width: 110rem;
 `;
 
-export default function TextArea({ options }) {
+export default function TextArea() {
     const [text, setText] = useState("");
+    // const [selectedText, setSelectedText] = useState("");
+
+    const { options } = useContext(OptionsContext);
+
+    //TODO: Trying to get the highlighted text, no window in Next.js
+    // const getSelectedText = () => {
+    //     const selection = window.getSelection();
+    //     console.log(selection);
+    // };
+
+    // useEffect(() => {
+    //     hasWindow();
+    //     return () => {
+    //         hasWindow();
+    //     };
+    // }, []);
+
+    // const hasWindow = () => {
+    //     return typeof window === "object";
+    //     console.log("has window?");
+    // };
+
+    // if (!hasWindow()) {
+    //     // const selection = window.getSelection();
+    //     // console.log(selection);
+    //     console.log("No window");
+    // }
 
     return (
         <StyledForm>
@@ -32,7 +60,14 @@ export default function TextArea({ options }) {
                 onChange={(e) => {
                     setText(e.target.value);
                 }}
-                style={{ fontSize: `${options.fontSize}px` }}
+                style={{
+                    fontSize: `${options.fontSize}px`,
+                    fontFamily: `${options.fontFamily}`,
+                    fontStyle: `${options.fontStyle}`,
+                    fontWeight: `${options.fontWeight}`,
+                    textDecoration: `${options.textDecoration}`,
+                }}
+                // onMouseUp={getSelectedText}
             />
         </StyledForm>
     );

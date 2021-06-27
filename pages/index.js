@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -6,7 +5,6 @@ import MenuToggle from "../components/MenuToggle";
 import TextArea from "../components/TextArea";
 import Background from "../components/Background";
 import styled from "styled-components";
-import bg1 from "../public/1.jpg";
 
 //TODO: pass down the set Options to the textarea, to use those styles
 
@@ -18,14 +16,6 @@ const StyledMain = styled.main`
 `;
 
 export default function Home() {
-    const [options, setOptions] = useState({
-        background: bg1,
-        fontFamily: "Lato",
-        fontStyle: "initial",
-        fontWeight: "initial",
-        fontSize: "2.1rem",
-    });
-
     return (
         <div>
             <Head>
@@ -40,9 +30,9 @@ export default function Home() {
             </Head>
 
             <StyledMain>
-                <MenuToggle options={options} setOptions={setOptions} />
-                <Background active={options.background} />
-                <TextArea options={options} />
+                <MenuToggle />
+                <Background />
+                <TextArea />
             </StyledMain>
         </div>
     );

@@ -1,7 +1,7 @@
-import React from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { css } from "styled-components";
+import OptionsContext from "../context/OptionsContext";
 
 const StyledBackgroundWrap = styled.div`
     position: fixed;
@@ -20,11 +20,8 @@ const StyledBackground = styled.div`
     // background-position: center;
 `;
 
-export default function Background({ active }) {
-    const setBg = () => {
-        console.log("click");
-    };
-
+export default function Background() {
+    const { options } = useContext(OptionsContext);
     return (
         <>
             <StyledBackgroundWrap>
@@ -32,7 +29,7 @@ export default function Background({ active }) {
                     layout="fill"
                     objectFit="cover"
                     quality={100}
-                    src={active}
+                    src={options.background}
                     alt="Background Image"
                 />
             </StyledBackgroundWrap>

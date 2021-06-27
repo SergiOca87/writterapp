@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { FaBold } from "react-icons/fa";
 import { FaItalic } from "react-icons/fa";
 import { FaUnderline } from "react-icons/fa";
+import OptionsContext from "../context/OptionsContext";
 
 const StyledFormWrap = styled.div`
     option {
@@ -31,7 +32,9 @@ const StyledButtonGroup = styled.div`
     }
 `;
 
-export default function OptionsForm({ options, setOptions }) {
+export default function OptionsForm() {
+    const { options, setOptions } = useContext(OptionsContext);
+
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             Simple tooltip
@@ -54,6 +57,12 @@ export default function OptionsForm({ options, setOptions }) {
                             <Button
                                 variant="outline-secondary"
                                 className="active"
+                                onClick={(e) =>
+                                    setOptions({
+                                        ...options,
+                                        fontFamily: "Lato",
+                                    })
+                                }
                             >
                                 <span className="lato">Aa</span>
                             </Button>
@@ -65,7 +74,15 @@ export default function OptionsForm({ options, setOptions }) {
                                 <Tooltip id="button-tooltip">Open Sans</Tooltip>
                             }
                         >
-                            <Button variant="outline-secondary">
+                            <Button
+                                variant="outline-secondary"
+                                onClick={(e) =>
+                                    setOptions({
+                                        ...options,
+                                        fontFamily: "OpenSans",
+                                    })
+                                }
+                            >
                                 <span className="open-sans">Aa</span>
                             </Button>
                         </OverlayTrigger>
@@ -100,13 +117,40 @@ export default function OptionsForm({ options, setOptions }) {
                 <Form.Group controlId="formBasicButtons">
                     <Form.Label>Style</Form.Label>
                     <StyledButtonGroup>
-                        <Button className="round" variant="outline-secondary">
+                        <Button
+                            className="round"
+                            variant="outline-secondary"
+                            onClick={(e) =>
+                                setOptions({
+                                    ...options,
+                                    fontWeight: "bold",
+                                })
+                            }
+                        >
                             <FaBold />
                         </Button>{" "}
-                        <Button className="round" variant="outline-secondary">
+                        <Button
+                            className="round"
+                            variant="outline-secondary"
+                            onClick={(e) =>
+                                setOptions({
+                                    ...options,
+                                    fontStyle: "italic",
+                                })
+                            }
+                        >
                             <FaItalic />
                         </Button>{" "}
-                        <Button className="round" variant="outline-secondary">
+                        <Button
+                            className="round"
+                            variant="outline-secondary"
+                            onClick={(e) =>
+                                setOptions({
+                                    ...options,
+                                    textDecoration: "underline",
+                                })
+                            }
+                        >
                             <FaUnderline />
                         </Button>{" "}
                     </StyledButtonGroup>
