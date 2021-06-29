@@ -41,6 +41,18 @@ export default function OptionsForm() {
         </Tooltip>
     );
 
+    const handleStyleButtonClick = (key, value) => {
+        options[key] === value
+            ? setOptions({
+                  ...options,
+                  [key]: "initial",
+              })
+            : setOptions({
+                  ...options,
+                  [key]: value,
+              });
+    };
+
     return (
         <StyledFormWrap>
             <Form>
@@ -56,7 +68,11 @@ export default function OptionsForm() {
                         >
                             <Button
                                 variant="outline-secondary"
-                                className="active"
+                                className={
+                                    options.fontFamily === "Lato"
+                                        ? "active"
+                                        : ""
+                                }
                                 onClick={(e) =>
                                     setOptions({
                                         ...options,
@@ -76,6 +92,11 @@ export default function OptionsForm() {
                         >
                             <Button
                                 variant="outline-secondary"
+                                className={
+                                    options.fontFamily === "OpenSans"
+                                        ? "active"
+                                        : ""
+                                }
                                 onClick={(e) =>
                                     setOptions({
                                         ...options,
@@ -118,37 +139,39 @@ export default function OptionsForm() {
                     <Form.Label>Style</Form.Label>
                     <StyledButtonGroup>
                         <Button
-                            className="round"
                             variant="outline-secondary"
+                            className={
+                                options.fontWeight === "bold" ? "active" : ""
+                            }
                             onClick={(e) =>
-                                setOptions({
-                                    ...options,
-                                    fontWeight: "bold",
-                                })
+                                handleStyleButtonClick("fontWeight", "bold")
                             }
                         >
                             <FaBold />
                         </Button>{" "}
                         <Button
-                            className="round"
                             variant="outline-secondary"
+                            className={
+                                options.fontStyle === "italic" ? "active" : ""
+                            }
                             onClick={(e) =>
-                                setOptions({
-                                    ...options,
-                                    fontStyle: "italic",
-                                })
+                                handleStyleButtonClick("fontStyle", "italic")
                             }
                         >
                             <FaItalic />
                         </Button>{" "}
                         <Button
-                            className="round"
                             variant="outline-secondary"
+                            className={
+                                options.textDecoration === "underline"
+                                    ? "active"
+                                    : ""
+                            }
                             onClick={(e) =>
-                                setOptions({
-                                    ...options,
-                                    textDecoration: "underline",
-                                })
+                                handleStyleButtonClick(
+                                    "textDecoration",
+                                    "underline"
+                                )
                             }
                         >
                             <FaUnderline />
