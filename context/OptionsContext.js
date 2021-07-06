@@ -11,6 +11,7 @@ export const OptionsProvider = ({ children }) => {
         fontWeight: "initial",
         textDecoration: "none",
         fontSize: "21",
+        selectedText: "",
     });
     return (
         <OptionsContext.Provider value={{ options, setOptions }}>

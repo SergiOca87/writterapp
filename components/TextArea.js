@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
 import OptionsContext from "../context/OptionsContext";
@@ -26,32 +26,18 @@ const StyledForm = styled.form`
 export default function TextArea() {
     const [text, setText] = useState("");
     // const [selectedText, setSelectedText] = useState("");
-
-    const { options } = useContext(OptionsContext);
-
-    //TODO: Trying to get the highlighted text, no window in Next.js
-    // const getSelectedText = () => {
-    //     const selection = window.getSelection();
-    //     console.log(selection);
-    // };
-
+    const { options, setOptions } = useContext(OptionsContext);
     // useEffect(() => {
-    //     hasWindow();
-    //     return () => {
-    //         hasWindow();
-    //     };
-    // }, []);
+    //     console.log(document.getSelection());
+    // });
 
-    // const hasWindow = () => {
-    //     return typeof window === "object";
-    //     console.log("has window?");
-    // };
-
-    // if (!hasWindow()) {
-    //     // const selection = window.getSelection();
-    //     // console.log(selection);
-    //     console.log("No window");
-    // }
+    //TODO: This may not be needed after all.
+    const handleMouseUp = () => {
+        setOptions({
+            ...options,
+            selectedText: window.getSelection(),
+        });
+    };
 
     return (
         <StyledForm>
@@ -64,9 +50,10 @@ export default function TextArea() {
                     fontSize: `${options.fontSize}px`,
                     fontFamily: `${options.fontFamily}`,
                     fontStyle: `${options.fontStyle}`,
-                    fontWeight: `${options.fontWeight}`,
+                    // fontWeight: `${options.fontWeight}`,
                     textDecoration: `${options.textDecoration}`,
                 }}
+                onMouseUp={handleMouseUp}
                 // onMouseUp={getSelectedText}
             />
         </StyledForm>

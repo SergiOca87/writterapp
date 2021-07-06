@@ -53,6 +53,20 @@ export default function OptionsForm() {
               });
     };
 
+    const handleBoldButtonClick = () => {
+        if (window.getSelection) {
+            var span = document.createElement("span");
+            span.style.fontWeight = "bold";
+            var sel = window.getSelection();
+            var range = sel.getRangeAt(0).cloneRange();
+            range.surroundContents(span);
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+            //TODO: This works, but outside of the textarea, how to use only inside of the textarea
+        }
+    };
+
     return (
         <StyledFormWrap>
             <Form>
@@ -143,9 +157,10 @@ export default function OptionsForm() {
                             className={
                                 options.fontWeight === "bold" ? "active" : ""
                             }
-                            onClick={(e) =>
-                                handleStyleButtonClick("fontWeight", "bold")
-                            }
+                            // onClick={(e) =>
+                            //     handleStyleButtonClick("fontWeight", "bold")
+                            // }
+                            onClick={handleBoldButtonClick}
                         >
                             <FaBold />
                         </Button>{" "}
