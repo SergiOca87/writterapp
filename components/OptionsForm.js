@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -60,6 +60,7 @@ export default function OptionsForm() {
             var sel = window.getSelection();
             var range = sel.getRangeAt(0).cloneRange();
             range.surroundContents(span);
+            console.log(range.toString());
             sel.removeAllRanges();
             sel.addRange(range);
 
