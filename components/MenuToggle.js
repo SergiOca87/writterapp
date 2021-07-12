@@ -4,6 +4,7 @@ import { BiMenu } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import OptionsForm from "../components/OptionsForm";
 import BackgroundSwitcher from "../components/BackgroundSwitcher";
+import MusicSwitcher from "../components/MusicSwitcher";
 
 const StyledDrawerWrap = styled.div`
     display: flex;
@@ -67,6 +68,7 @@ export default function MenuToggle({ options, setOptions }) {
                 <StyledDrawerContent className="inner-content">
                     <BackgroundSwitcher setOptions={setOptions} />
                     <OptionsForm options={options} setOptions={setOptions} />
+                    <MusicSwitcher setOptions={setOptions} />
                 </StyledDrawerContent>
             </StyledDrawer>
         </StyledDrawerWrap>

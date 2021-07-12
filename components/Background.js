@@ -13,13 +13,6 @@ const StyledBackgroundWrap = styled.div`
     top: 0;
 `;
 
-const StyledBackground = styled.div`
-    width: 100%;
-    height: 100%;
-    // background-size: cover;
-    // background-position: center;
-`;
-
 export default function Background() {
     const { options } = useContext(OptionsContext);
     return (

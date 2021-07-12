@@ -50,16 +50,24 @@ export default function TextArea() {
 
     const textArea = useRef(null);
 
-    //TODO: This may not be needed after all.
     const handleMouseUp = () => {
         if (window.getSelection().toString().length > 0) {
-            var span = document.createElement("span");
-            span.style.fontWeight = "bold";
             var sel = window.getSelection();
             var range = sel.getRangeAt(0).cloneRange();
-            range.surroundContents(span);
-            sel.removeAllRanges();
-            sel.addRange(range);
+            // range.surroundContents(span);
+
+            setOptions({
+                ...options,
+                selectedText: range,
+            });
+
+            // var span = document.createElement("span");
+            // span.style.fontWeight = "bold";
+            // var sel = window.getSelection();
+            // var range = sel.getRangeAt(0).cloneRange();
+            // range.surroundContents(span);
+            // sel.removeAllRanges();
+            // sel.addRange(range);
         }
     };
 
@@ -74,15 +82,15 @@ export default function TextArea() {
                     fontSize: `${options.fontSize}px`,
                     fontFamily: `${options.fontFamily}`,
                     fontStyle: `${options.fontStyle}`,
-                    // fontWeight: `${options.fontWeight}`,
+                    fontWeight: `${options.fontWeight}`,
                     textDecoration: `${options.textDecoration}`,
                 }}
                 ref={textArea}
                 // onMouseUp={getSelectedText}
             />
-            <StyledTextDisplay onMouseUp={handleMouseUp}>
+            {/* <StyledTextDisplay onMouseUp={handleMouseUp}>
                 {text}
-            </StyledTextDisplay>
+            </StyledTextDisplay> */}
         </StyledForm>
     );
 }
